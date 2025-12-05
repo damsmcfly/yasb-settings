@@ -1,4 +1,7 @@
 # yasb-settings
 My YASB settings
 
-All files go in C:\Users<USERNAME>.config\yasb
+Place all files in ```C:\Users\<USERNAME>\.config\yasb.```
+
+Make sure to update the three folder paths and the weather widget API key in 
+``` config.yaml ```
