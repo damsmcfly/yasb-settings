@@ -208,7 +208,7 @@ widgets:
       callbacks:
         on_left: "next_layout"
         on_middle: "toggle_monocle"
-        on_right: "prev_layout"
+        on_right: "toggle_float"
   komorebi_control:
       type: "komorebi.control.KomorebiControlWidget"
       options:
@@ -501,4 +501,5 @@ widgets:
         disk_thresholds:
           low: 25
           medium: 50
+
           high: 90
