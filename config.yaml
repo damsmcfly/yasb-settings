@@ -33,10 +33,10 @@ bars:
       width: "100%"
       height: 32
     padding:
-      top: 4
-      left: 4
-      bottom: 0
-      right: 4
+      top: 0
+      left: 0
+      bottom: 8
+      right: 0
     widgets:
       left:
       - "home"
@@ -54,6 +54,7 @@ bars:
       - "cpu"
       - "memory"
       - "battery"
+      - "wifi"
       - "notifications"
       - "power_menu"
       #- "server_monitor"
@@ -66,9 +67,9 @@ widgets:
       label: "<span>\udb81\udf17</span>"
       menu_list:
       - { title: "User Home", path: "~" }
-      - { title: "Download", path: "F:\\User\\xxx\\Downloads" }
-      - { title: "SLSK Downloads", path: "F:\\User\\xxx\\Documents\\Soulseek Downloads\\complete" }
-      - { title: "Documents", path: "F:\\User\\xxx\\Documents" }
+      - { title: "Download", path: "F:\\User\\XXXXXX\\Downloads" }
+      - { title: "SLSK Downloads", path: "F:\\User\\XXXXXX\\Documents\\Soulseek Downloads\\complete" }
+      - { title: "Documents", path: "F:\\User\\XXXXXX\\Documents" }
       - { title: "Pictures", path: "~\\Pictures" }
       - { title: "Music", path: "F:\\Music" }
       system_menu: true
@@ -168,6 +169,7 @@ widgets:
       label_default_name: "{name}"
       label_zero_index: false
       hide_empty_workspaces: false
+      enable_scroll_switching: true
       app_icons:
         enabled_populated: true     # Show icons in populated workspaces
         enabled_active: true        # Show icons in active workspace
@@ -239,7 +241,7 @@ widgets:
     options:
       label: "<span>{icon}</span> {temp}"
       label_alt: "{location}: Min {min_temp}, Max {max_temp}, Humidity {humidity}"
-      api_key: "xxxxxxxxxxxxxxxxxx"
+      api_key: "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
       update_interval: 30000
       hide_decimal: true
       units: "metric"
@@ -501,5 +503,51 @@ widgets:
         disk_thresholds:
           low: 25
           medium: 50
-
           high: 90
+  wifi:
+    type: "yasb.wifi.WifiWidget"
+    options:
+      label: "<span>{wifi_icon}  {wifi_name}</span>"
+      label_alt: "{wifi_name} {wifi_strength}%"
+      update_interval: 20000
+      callbacks:
+        on_left: "toggle_menu"
+        on_middle: "exec cmd.exe /c start ms-settings:network"
+        on_right: "toggle_label"
+      ethernet_label: "<span>{wifi_icon}</span>"
+      ethernet_label_alt: "<span>{wifi_icon}</span>{ip_addr}"
+      ethernet_icon: "\ueba9"
+      get_exact_wifi_strength: false  # Optional. Will require location access permission if true.
+      wifi_icons: [
+        "\udb82\udd2e",  # Icon for 0% strength
+        "\udb82\udd1f",  # Icon for 1-24% strength
+        "\udb82\udd22",  # Icon for 25-49% strength
+        "\udb82\udd25",  # Icon for 50-74% strength
+        "\udb82\udd28"   # Icon for 75-100% strength
+      ]
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ]
+      menu_config:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "System"
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+        wifi_icons_secured: [
+          "\ue670",
+          "\ue671",
+          "\ue672",
+          "\ue673",
+        ]
+        wifi_icons_unsecured: [
+          "\uec3c",
+          "\uec3d",
+          "\uec3e",
+          "\uec3f",
+        ]
