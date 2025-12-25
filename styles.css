@@ -4,27 +4,30 @@ For more information about configuration options, please visit the Wiki https://
 */
 :root {
     --mauve: #cba6f7;
-    --red: #f38ba8;
+    --red: #bb4d4d;
     --blue: #206994;
     --lavender: #5c5c5c;
     --text1: #6d6d6d;
     --text2: #8f8f8f;
     --text3: #5e5e5e;
     --text4: #333333;
-    --text5: #c40000;
-    --bg-color1: #191919;
-    --bg-color2: #333333;
+    --text5: #860909;
+    --text6: #eee;
+    --bg-color1: #1d1d1d;
+    --bg-color2: #222;
+    --bg-color3: #2e2e2e;
 }
 * {
     font-size: 12px;
     color: var(--text1);
     font-weight: 600;
-    font-family: "JetBrainsMono NFP";
+    /*font-family: "JetBrainsMono NFP";*/
+    font-family: 'Segoe UI';
 }
 .yasb-bar {
     background-color: var(--bg-color1);
-    border-radius: 8px;
-    border: 1px solid var(--bg-color2);
+    border-radius: 0px;
+    border: 0px solid var(--bg-color3);
 }
 /* Global styles for ToolTip */
 .tooltip {
@@ -131,7 +134,7 @@ For more information about configuration options, please visit the Wiki https://
 }
 .komorebi-workspaces .ws-btn {
     border: none;
-    background-color: var(--color1);
+    background-color: var(--bg-color2);
     margin: 0 2px;
     height: 9px;
     width: 9px;
@@ -141,22 +144,29 @@ For more information about configuration options, please visit the Wiki https://
 .komorebi-workspaces .ws-btn:hover {
     color: var(--text2);
 }
-.komorebi-workspaces .ws-btn.populated {
-    background-color: var(--color1);
-}
-.komorebi-workspaces .ws-btn.active {
-    background-color: var(--text4);
-    width: 100px;
-}
-.komorebi-workspaces .ws-btn.active .label {
-    color: var(--text2);
-}
 .komorebi-workspaces .ws-btn .label {
     padding-right: 5px;
-    color: var(--text2);
+    color: var(--text3);
 }
 .komorebi-workspaces .ws-btn .icon {
     padding: 0 2px;
+}
+.komorebi-workspaces .ws-btn.populated {
+    background-color: var(--bg-color3);
+    color: var(--blue);
+}
+.komorebi-workspaces .ws-btn.populated .label {
+    padding-right: 5px;
+    color: var(--text2);
+}
+.komorebi-workspaces .ws-btn.active {
+    /*background-color: var(--bg-color2);
+    background-color: var(--text3);*/
+    background-color: var(--blue);
+    width: 100px;
+}
+.komorebi-workspaces .ws-btn.active .label {
+    color: var(--text6);
 }
 .komorebi-control-menu {
     background-color: var(--bg-color1);
@@ -240,9 +250,12 @@ For more information about configuration options, please visit the Wiki https://
 .volume-widget {
     padding: 0 6px;
 }
+.weather-widget .widget-container .label {
+    font-weight: bold;
+}
 .weather-widget .icon {
-    font-size: 18px;
-    margin: 0 2px 1px 0;
+    font-size: 16px;
+    margin: 0 6px 1px 0;
     color: var(--yellow);
 }
 .weather-card {
@@ -288,10 +301,21 @@ For more information about configuration options, please visit the Wiki https://
     font-size: 12px;
     font-weight: bold;
 }
+
+.cpu-widget .icon,
+.memory-widget .icon{
+    font-size: 14px;
+    margin-right: 4px;
+}
+
 .media-widget {
     padding: 0;
     margin: 0 16px 0 0;
     border-radius: 0;
+}
+
+.media-widget .widget-container .label {
+    font-weight: bold;
 }
 .media-widget .btn {
     color: #7a7f8b;
@@ -424,7 +448,7 @@ For more information about configuration options, please visit the Wiki https://
     padding: 0 4px 0 12px;
 }
 .home-widget .icon {
-    color: var(--lavender);
+    color: var(--text2);
 }
 .home-widget .icon:hover {
     color: var(--text1);
@@ -458,7 +482,9 @@ For more information about configuration options, please visit the Wiki https://
 .notification-widget .icon.new-notification {
     color: var(--blue);
 }
-
+.clock-widget .widget-container .label {
+    font-weight: bold;
+}
 .calendar {
     background-color: var(--bg-color1);
     border-radius: 8px;
@@ -512,6 +538,15 @@ For more information about configuration options, please visit the Wiki https://
     font-weight: 900;
     color: rgb(255, 255, 255);
     margin-top: -20px;
+}
+.traffic-widget {
+    min-width: 76px;
+}
+.traffic-widget .label {
+    font-size: 10px;
+}
+.apps-widget .label:hover {
+    color: #fff;
 }
 .traffic-menu {
     background-color: rgba(24, 25, 27, 0.85);
@@ -642,6 +677,10 @@ For more information about configuration options, please visit the Wiki https://
 .disk-widget {
     padding: 0 6px 0 6px;
 }
+.disk-widget .icon {
+    font-size: 14px;
+    margin-right: 6px;
+}
 .disk-group-label-size {
     font-size: 14px;
 }
@@ -679,8 +718,10 @@ For more information about configuration options, please visit the Wiki https://
     color: #666879;
 }
 
-.wifi-widget .widget-container .label.alt {font-size: 12px;}
-.wifi-widget .widget-container .icon {font-size: 12px;}
+.wifi-widget .widget-container .label.alt {font-size: 14px;}
+.wifi-widget .widget-container .icon {
+    font-size: 14px;
+}
 
 .wifi-menu {
     font-family: 'Segoe UI';
@@ -823,4 +864,60 @@ For more information about configuration options, please visit the Wiki https://
 .wifi-menu .footer .refresh-icon:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
+}
+
+
+
+.taskbar-widget .app-container {
+    margin: 4px 2px;
+    border-radius: 4px;
+    padding: 0 4px;
+}
+.taskbar-widget .app-container.foreground {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.taskbar-widget .app-container.flashing {
+    background-color: rgba(255, 106, 106, 0.63);
+}
+.taskbar-widget .app-container.running {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+.taskbar-widget .app-container:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.taskbar-widget .app-container .app-title {
+    padding-left: 4px;
+}
+/* Taskbar preview popup is very limited in styling options, do not use margins/paddings here */
+.taskbar-preview {
+    border-radius: 8px; 
+    background-color: #2b2c2d; 
+}
+.taskbar-preview.flashing { 
+    background-color: #7f434a;
+}
+.taskbar-preview .header {
+    padding-bottom: 12px;
+    padding-top: 4px;
+}
+.taskbar-preview .header .title {
+    color: #d6d6d6;
+    font-family: "Segoe UI";
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* Custom Widget ip_info */
+.ip-info-widget .widget-container .icon {
+    margin-right: 4px;
+    margin-top: 1px;
+    font-size: 18px;
+}
+
+/* Custom Widget Last.fm */
+.lastfm-widget .widget-container .icon {
+    color: var(--text5);
+    margin-right: 4px;
+    margin-bottom: 2px;
+    font-size: 17px;
 }
