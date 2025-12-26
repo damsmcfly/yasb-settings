@@ -1,12 +1,8 @@
-/* 
-This is default and very simple styles file for Yasb. 
-For more information about configuration options, please visit the Wiki https://github.com/amnweb/yasb/wiki
-*/
 :root {
     --mauve: #cba6f7;
     --red: #bb4d4d;
     --blue: #206994;
-    --lavender: #5c5c5c;
+    --orangebrnz: #EB743B;
     --text1: #6d6d6d;
     --text2: #8f8f8f;
     --text3: #5e5e5e;
@@ -919,5 +915,12 @@ For more information about configuration options, please visit the Wiki https://
     color: var(--text5);
     margin-right: 4px;
     margin-bottom: 2px;
+    font-size: 17px;
+}
+
+/* Custom Widget listenbrainz */
+.listenbrainz-widget .widget-container .icon {
+    color: var(--orangebrnz);
+    margin-right: 5px;
     font-size: 17px;
 }
