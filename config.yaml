@@ -688,7 +688,6 @@ widgets:
         hide_empty: false
         use_shell: true
       callbacks:
-        #on_left: "exec cmd /c start https://www.last.fm/user/daaams"
         on_left: "exec cmd /c start https://www.last.fm/user/$env:YASB_LASTFM_USERNAME"
         on_middle: "toggle_label"
   listenbrainz:
@@ -709,3 +708,4 @@ widgets:
       callbacks:
         on_left: "exec cmd /c start https://listenbrainz.org/user/$env:YASB_LISTENBRAINZ_USERNAME/"
         on_middle: "toggle_label"
+
