@@ -48,6 +48,7 @@ bars:
       center:
       - "media"
       - "lastfm"
+      - "listenbrainz"
       - "weather"
       - "clock"
       right:
@@ -596,6 +597,31 @@ widgets:
           "\uec3e",
           "\uec3f",
         ]
+  taskbar:
+    type: "yasb.taskbar.TaskbarWidget"
+    options:
+      icon_size: 14
+      tooltip: true
+      show_only_visible: true
+      strict_filtering: true
+      monitor_exclusive: false
+      animation:
+        enabled: false
+      preview:
+        enabled: true
+        width: 340
+        delay: 0
+        padding: 8
+        margin: 8
+      title_label:
+        enabled: false
+        show: "always"
+        min_length: 10
+        max_length: 30
+      ignore_apps:
+        processes: []
+        titles: []
+        classes: []
   ip_info:
     type: "yasb.custom.CustomWidget"
     options:
@@ -637,28 +663,22 @@ widgets:
       callbacks:
         on_left: "exec cmd /c start https://www.last.fm/user/XXXXX"
         on_middle: "toggle_label"
-  taskbar:
-    type: "yasb.taskbar.TaskbarWidget"
+  listenbrainz:
+    type: "yasb.custom.CustomWidget"
     options:
-      icon_size: 14
+      label: "<span>\udb81\udf5a</span> {data[playcount]}"
+      label_alt: "<span>\udb81\udf5a</span> {data[username]}"
+      class_name: "listenbrainz-widget"
       tooltip: true
-      show_only_visible: true
-      strict_filtering: true
-      monitor_exclusive: false
-      animation:
-        enabled: false
-      preview:
-        enabled: true
-        width: 340
-        delay: 0
-        padding: 8
-        margin: 8
-      title_label:
-        enabled: false
-        show: "always"
-        min_length: 10
-        max_length: 30
-      ignore_apps:
-        processes: []
-        titles: []
-        classes: []
+      tooltip_label: "<b>{data[username]}</b> (listenbrainz)<hr><span>\udb81\udf5a</span>&nbsp;&nbsp;<b>Total listens:</b> {data[playcount]}<hr><span>\udb81\udf5a</span>&nbsp;&nbsp;<b>Recent listens:</b><br>{data[recent_listens]}<br>"
+      exec_options:
+        run_cmd: >
+          powershell -NoProfile -File C:\Users\XXXXX\komorebi\listenbrainz-widget.ps1
+        run_interval: 300000   # every 5 minutes
+        return_format: "json"
+        hide_empty: false
+        use_shell: true
+      callbacks:
+        on_left: "exec cmd /c start https://listenbrainz.org/user/XXXXX/"
+        on_middle: "toggle_label"
+
