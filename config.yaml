@@ -54,6 +54,7 @@ bars:
       right:
       - "traffic"
       - "ip_info"
+      - "whkd"
       - "disk"
       - "cpu"
       - "memory"
@@ -71,9 +72,9 @@ widgets:
       label: "<span>\udb81\udf17</span>"
       menu_list:
       - { title: "User Home", path: "~" }
-      - { title: "Download", path: "F:\\User\\XXXXX\\Downloads" }
-      - { title: "SLSK Downloads", path: "F:\\User\\XXXXX\\Documents\\Soulseek Downloads\\complete" }
-      - { title: "Documents", path: "F:\\User\\XXXXX\\Documents" }
+      - { title: "Download", path: "F:\\User\\$env:YASB_WINDOWS_USER\\Downloads" }
+      - { title: "SLSK Downloads", path: "F:\\User\\$env:YASB_WINDOWS_USER\\Documents\\Soulseek Downloads\\complete" }
+      - { title: "Documents", path: "F:\\User\\$env:YASB_WINDOWS_USER\\Documents" }
       - { title: "Pictures", path: "~\\Pictures" }
       - { title: "Music", path: "F:\\Music" }
       system_menu: true
@@ -266,11 +267,11 @@ widgets:
     options:
       label: "<span>{icon}</span> {temp}"
       label_alt: "{location}: Min {min_temp}, Max {max_temp}, Humidity {humidity}"
-      api_key: "XXXXX"
+      api_key: "$env:YASB_WEATHER_API_KEY"
       update_interval: 30000
       hide_decimal: true
       units: "metric"
-      location: "Paris, FR"
+      location: "$env:YASB_WEATHER_LOCATION"
       callbacks:
         on_left: "toggle_card"
         on_middle: "do_nothing"
@@ -596,7 +597,7 @@ widgets:
           "\uec3d",
           "\uec3e",
           "\uec3f",
-        ]
+        ]        
   taskbar:
     type: "yasb.taskbar.TaskbarWidget"
     options:
@@ -645,6 +646,32 @@ widgets:
         color: "black"
         radius: 0
         offset: [ 1, 1 ]
+  whkd:
+    type: "yasb.whkd.WhkdWidget"
+    options:
+      label: "<span>\uf11c</span>"
+      special_keys:
+        - key: "win"
+          key_replace: "\ue70f"
+        - key: "ctrl"
+          key_replace: "Ctrl"
+        - key: "alt" 
+          key_replace: "Alt"
+        - key: "shift"
+          key_replace: "Shift"
+        - key: "left"
+          key_replace: "\u2190"
+        - key: "right"
+          key_replace: "\u2192"
+        - key: "up"
+          key_replace: "\u2191"
+        - key: "down"
+          key_replace: "\u2193"
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ]
   lastfm:
     type: "yasb.custom.CustomWidget"
     options:
@@ -652,16 +679,17 @@ widgets:
       label_alt: "<span>\uf202</span> {data[username]}, user since {data[registered]}"
       class_name: "lastfm-widget"
       tooltip: true
-      tooltip_label: "<b>{data[username]}</b> (last.fm)<br><small><i>user since {data[registered]}</i></small><hr><span>\uf202</span>&nbsp;&nbsp;<b>Scrobbles:</b> {data[playcount]}<hr><span>\ued35</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Artists:</b> {data[artist_count]}<br><span>\udb81\uddee</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Albums:</b> {data[album_count]}<br><span>\udb81\udf5a</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Tracks:</b> {data[track_count]}"
+      tooltip_label: "<b>{data[username]}</b>  (last.fm)<br><small><i>user since {data[registered]}</i></small><hr><span>\uf202</span>&nbsp;&nbsp;<b>Scrobbles:</b> {data[playcount]}<hr><span>\ued35</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Artists:</b> {data[artist_count]}<br><span>\udb81\uddee</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Albums:</b> {data[album_count]}<br><span>\udb81\udf5a</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Tracks:</b> {data[track_count]}<hr><span>\ued35</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Top artists (7 days):</b> <br>{data[top_artists]}<hr><span>\udb81\uddee</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Top albums (7 days):</b> <br>{data[top_albums]}<hr><span>\udb81\udf5a</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Top tracks (7 days):</b> <br>{data[top_tracks]}"
       exec_options:
         run_cmd: >
-          powershell -NoProfile -File C:\Users\XXXXX\komorebi\lastfm.ps1
-        run_interval: 30000000   # every 5 minutes
+          powershell -NoProfile -File $env:YASB_SCRIPTS_PATH\lastfm-widget.ps1
+        run_interval: 300000   # every 5 minutes
         return_format: "json"
         hide_empty: false
         use_shell: true
       callbacks:
-        on_left: "exec cmd /c start https://www.last.fm/user/XXXXX"
+        #on_left: "exec cmd /c start https://www.last.fm/user/daaams"
+        on_left: "exec cmd /c start https://www.last.fm/user/$env:YASB_LASTFM_USERNAME"
         on_middle: "toggle_label"
   listenbrainz:
     type: "yasb.custom.CustomWidget"
@@ -673,12 +701,11 @@ widgets:
       tooltip_label: "<b>{data[username]}</b> (listenbrainz)<hr><span>\udb81\udf5a</span>&nbsp;&nbsp;<b>Total listens:</b> {data[playcount]}<hr><span>\udb81\udf5a</span>&nbsp;&nbsp;<b>Recent listens:</b><br>{data[recent_listens]}<br>"
       exec_options:
         run_cmd: >
-          powershell -NoProfile -File C:\Users\XXXXX\komorebi\listenbrainz-widget.ps1
+          powershell -NoProfile -File $env:YASB_SCRIPTS_PATH\listenbrainz-widget.ps1
         run_interval: 300000   # every 5 minutes
         return_format: "json"
         hide_empty: false
         use_shell: true
       callbacks:
-        on_left: "exec cmd /c start https://listenbrainz.org/user/XXXXX/"
+        on_left: "exec cmd /c start https://listenbrainz.org/user/$env:YASB_LISTENBRAINZ_USERNAME/"
         on_middle: "toggle_label"
-
