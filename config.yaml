@@ -678,10 +678,9 @@ widgets:
       label_alt: "<span>\uf202</span> {data[username]}, user since {data[registered]}"
       class_name: "lastfm-widget"
       tooltip: true
-      tooltip_label: "<b>{data[username]}</b>  (last.fm)<br><small><i>user since {data[registered]}</i></small><hr><span>\uf202</span>&nbsp;&nbsp;<b>Scrobbles:</b> {data[playcount]}<hr><span>\ued35</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Artists:</b> {data[artist_count]}<br><span>\udb81\uddee</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Albums:</b> {data[album_count]}<br><span>\udb81\udf5a</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Tracks:</b> {data[track_count]}<hr><span>\ued35</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Top artists (7 days):</b> <br>{data[top_artists]}<hr><span>\udb81\uddee</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Top albums (7 days):</b> <br>{data[top_albums]}<hr><span>\udb81\udf5a</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Top tracks (7 days):</b> <br>{data[top_tracks]}"
+      tooltip_label: "<b>{data[username]}</b> (last.fm)<br><small><i>user since {data[registered]}</i></small><hr><span>\uf202</span>&nbsp;&nbsp;<b>Scrobbles:</b> {data[playcount]}<hr><span>\ued35</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Artists:</b> {data[artist_count]}<br><span>\udb81\uddee</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Albums:</b> {data[album_count]}<br><span>\udb81\udf5a</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Tracks:</b> {data[track_count]}<hr><span>\ued35</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Top artists (7 days):</b> <br>{data[top_artists]}<hr><span>\udb81\uddee</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Top albums (7 days):</b> <br>{data[top_albums]}<hr><span>\udb81\udf5a</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Top tracks (7 days):</b> <br>{data[top_tracks]}"
       exec_options:
-        run_cmd: >
-          powershell -NoProfile -File $env:YASB_SCRIPTS_PATH\lastfm-widget.ps1
+        run_cmd: $env:YASB_SCRIPTS_PATH\lastfm-widget.cmd
         run_interval: 300000   # every 5 minutes
         return_format: "json"
         hide_empty: false
@@ -698,8 +697,7 @@ widgets:
       tooltip: true
       tooltip_label: "<b>{data[username]}</b> (listenbrainz)<hr><span>\udb81\udf5a</span>&nbsp;&nbsp;<b>Total listens:</b> {data[playcount]}<hr><span>\udb81\udf5a</span>&nbsp;&nbsp;<b>Recent listens:</b><br>{data[recent_listens]}<br>"
       exec_options:
-        run_cmd: >
-          powershell -NoProfile -File $env:YASB_SCRIPTS_PATH\listenbrainz-widget.ps1
+        run_cmd: $env:YASB_SCRIPTS_PATH\listenbrainz-widget.cmd
         run_interval: 300000   # every 5 minutes
         return_format: "json"
         hide_empty: false
